@@ -16,8 +16,39 @@ struct Node
     int data;
     Node* left, * right;
 };
+// This is method 1 using map data structure as an extra space for storing data : 
+void solve(Node* root, int d, map<int, vector<int>>& mp) {
+    if (root == NULL) return;
+    
+    // Traverse left subtree, increase diagonal level by 1
+    solve(root->left, d + 1, mp);
+    
+    // Store the current node's value in the corresponding diagonal level
+    mp[d].push_back(root->data); // Store root->data instead of root
+    
+    // Traverse right subtree, maintain the same diagonal level
+    solve(root->right, d, mp);
+}
+
+vector<int> diagonal(Node* root) {
+    map<int, vector<int>> mp;
+    solve(root, 0, mp);
+    
+    vector<int> ans;
+    
+    // Iterate over the map to collect diagonal elements into ans
+    for (auto& pair : mp) {
+        for (auto value : pair.second) {
+            ans.push_back(value);
+        }
+    }
+    
+    return ans;
+}
 
 
+
+//This is method 2 more optimised in storage 
 vector<int> diagonal(Node *root)
 {
     vector<int> ans;
