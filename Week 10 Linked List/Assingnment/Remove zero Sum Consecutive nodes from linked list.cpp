@@ -52,3 +52,46 @@ public:
         return dummyNode->next;  // Return the modified list, skipping the dummy node
     }
 };
+
+
+
+<<<<<<<------------Second Method------------->>>>>>>
+
+    class Solution {
+public:
+        void  santizemap(ListNode* head,unordered_map<int, ListNode*>&mp , int  currS){
+
+              int temp =  currS; 
+              while(true){
+                   
+                    temp+=head->val ; 
+                    if(temp==currS)break ; 
+                    mp.erase(temp); 
+                    head =  head->next ; 
+              }
+        }
+    ListNode* removeZeroSumSublists(ListNode* head) {
+        if(!head  || (!head->next && head->val==0))return 0; 
+
+          unordered_map<int, ListNode*>mp; 
+          auto it = head ; 
+          int currS = 0 ; 
+          while(it){
+               currS+=it->val ; 
+               if(currS==0){
+                 head = it->next ; 
+                 mp.clear(); 
+               }
+               else if(mp.find(currS)!=mp.end()){
+                 santizemap(mp[currS]->next,mp, currS);
+                 mp[currS]->next  =  it->next ; 
+
+               }
+               else{
+                mp[currS] = it; 
+               }
+               it=it->next ; 
+          }
+          return head; 
+    }
+};
