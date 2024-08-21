@@ -33,3 +33,29 @@ public:
         return ans;
     }
 };
+
+
+//<<<<<---------Permutation 1 ------------>>
+//Leetcode 46 
+
+class Solution {
+public:
+     void solve(vector<int>nums,vector<vector<int>>&ans,int index){
+             int n = nums.size();
+             if(index>=n){
+                 ans.push_back(nums);
+                return ; 
+                 }
+                 for(int i = index ; i<n; i++){
+                      swap(nums[index],nums[i]);
+                      solve(nums,ans,index+1); 
+                      //backtracking ; 
+                      swap(nums[index],nums[i]);
+                 }
+     }
+    vector<vector<int>> permute(vector<int>& nums) {
+        vector<vector<int>>ans; 
+          solve(nums,ans,0);
+         return ans; 
+    }
+};
