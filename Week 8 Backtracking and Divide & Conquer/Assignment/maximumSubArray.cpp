@@ -6,6 +6,30 @@
 #include<vector>
 using namespace std;
 
+// Method 1 Kadane's Algorithm; 
+class Solution {
+public:
+    int maxSubArray(vector<int>& nums) {
+              int maxSum = nums[0] ; 
+              int n =  nums.size(); 
+                  int sum =0 ;
+          for(int i = 0 ; i<n ; i++){
+              //step : 1 ; 
+                sum+=nums[i]; 
+              //step : 2 ; 
+                maxSum=max(maxSum,sum); 
+             //stemp : 3 ; 
+                if(sum<0){
+                    sum = 0 ; 
+                }
+          }
+
+          return maxSum; 
+    }
+};
+
+
+//Method 2 Using D&C ; 
 class Solution {
 public:
     int maxSubArrayHelper(vector<int>& nums, int start, int end){
@@ -38,3 +62,4 @@ public:
         return maxSubArrayHelper(nums, 0, nums.size()-1);
     }
 };
+
