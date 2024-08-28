@@ -1,5 +1,5 @@
 // remove redundant brackets
-
+// None of the platform is used while solviing this question 
 #include<iostream>
 #include<stack>
 using namespace std;
