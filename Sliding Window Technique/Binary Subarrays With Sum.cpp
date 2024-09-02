@@ -1,4 +1,4 @@
-// Leetcode 930 (Hard) ///
+// Leetcode 930 (Medium) ///
 class Solution {
 public:
     int numSubarraysWithSum(vector<int>& nums, int goal) {
