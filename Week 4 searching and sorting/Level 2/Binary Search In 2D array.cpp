@@ -1,5 +1,11 @@
 // Leetcode 74 (Medium)
 //binary search in a  2D matrix 
+
+// <<<<<<<<<<========= Formula of conversion of  1D to 2D and 2D to 1D ===============>>>>>>>
+
+       //2D-1D ====> int index  =   no.of columns* no. of rows  + j(column ka index)  ;
+       //1D-2D  ====>  int RowIndex  =  mid/column  ; int ColIndex = mid % column;
+                        
 class Solution {
 public:
     bool searchMatrix(vector<vector<int>>& matrix, int target) {
