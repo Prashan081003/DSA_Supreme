@@ -1,3 +1,4 @@
+// Question ======>>>> Find Quotient Using Binary Search 
 // divide two number by using binary search
 
 #include<iostream>
@@ -39,3 +40,22 @@ int main(){
 
     return 0;
 }
+
+// <<<<<<<<<<=========== Extra Part =================>>>>>>>>>
+ // Calculate decimal part up to 2 decimal places
+        double increment = 0.1;
+        for (int i = 0; i < 2; ++i) {
+            while (absDivisor * (ans + increment) <= absDividend) {
+                ans += increment;
+            }
+            increment /= 10;
+        }
+
+        // Apply the sign
+        if ((divisor > 0 && dividend < 0) || (divisor < 0 && dividend > 0)) {
+            ans = -ans;
+        }
+
+        return ans;
+    }
+};
