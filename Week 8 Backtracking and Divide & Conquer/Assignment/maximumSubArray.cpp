@@ -7,6 +7,9 @@
 using namespace std;
 
 // Method 1 Kadane's Algorithm; 
+//Kadane's Algorithm only works for arrays with at least one positive number.
+//If all numbers in the array are negative, the algorithm will return 0 as the maximum subarray sum. 
+//The algorithm may not work for arrays with very large or very small values, as it can suffer from overflow or underflow issues.
 class Solution {
 public:
     int maxSubArray(vector<int>& nums) {
