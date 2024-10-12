@@ -59,23 +59,41 @@ bool bfs(int start, vector<int>& visited, vector<vector<int>>& adj) {
     }
 };
 
-int main(){
-    Graph g;
-    g.addEdge(0, 1, 0);
-    g.addEdge(1, 2, 0);
-    g.addEdge(1, 3, 0);
-    g.addEdge(2, 4, 0);
-    g.addEdge(3, 4, 0);
-    g.addEdge(2, 5, 0);
-
-    int src = 0;
-    bool isCyclic = g.checkCycleUndirectedBFS(src);
-    if(isCyclic){
-        cout<<"cycle present"<<endl;
-    }
-    else{
-        cout<<"cycle absent"<<endl;
+//------------>>  below is the question solved in gfg of detect cycle in undirected grapH ------------->>
+bool isCycle(int V, vector<int> adj[]) {
+    // Using vector instead of unordered_map for visited and parent
+    vector<bool> vis(V, false); 
+    vector<int> parent(V, -1);
+    
+    for (int i = 0; i < V; i++) {
+        if (!vis[i]) {
+            // Perform BFS for each unvisited component
+            queue<int> q;
+            q.push(i);
+            vis[i] = true;
+            parent[i] = -1;  // The starting node has no parent
+            
+            while (!q.empty()) {
+                int frontNode = q.front();
+                q.pop();
+                
+                // Explore all the neighbors of frontNode
+                for (auto nbr : adj[frontNode]) {
+                    if (!vis[nbr]) {
+                        // If not visited, mark it and assign parent
+                        q.push(nbr);
+                        vis[nbr] = true;
+                        parent[nbr] = frontNode;
+                    }
+                    // If visited and it's not the parent, there's a cycle
+                    else if (vis[nbr] == true && nbr != parent[frontNode]) {
+                        return true;  // Cycle detected
+                    }
+                }
+            }
+        }
     }
     
-    return 0;
+    return false;  // No cycle found in any component
 }
+
