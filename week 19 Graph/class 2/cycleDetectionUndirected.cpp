@@ -6,37 +6,31 @@
 #include<queue>
 using namespace std;
 
-class Graph{
-    public:
-    unordered_map<int, list<int>> adjLIst;
-    void addEdge(int u, int v, bool direction){
-        // direction -> 0 -> undirected
-        // direction -> 1 -> directed
-        if(direction == 1){
-            // u -> v
-            adjLIst[u].push_back(v);
-        }
-        else{
-            // direction = 0
-            // u -> v
-            adjLIst[u].push_back(v);
-            // v -> u
-            adjLIst[v].push_back(u);
-        }
-        cout<<endl<<"Printing adjList"<<endl;
-        printAdjList();
-        cout<<endl;
-    }
-    void printAdjList(){
-        for(auto i: adjLIst){
-            cout<<i.first<<"->{";
-            for(auto neighbour: i.second){
-                cout<<neighbour<<",";
+   //=====>>> below function code is CGPT generated code  <<<==========
+bool bfs(int start, vector<int>& visited, vector<vector<int>>& adj) {
+    queue<pair<int, int>> q;  // Pair holds {node, parent}
+    visited[start] = 1;
+    q.push({start, -1});
+
+    while (!q.empty()) {
+        int node = q.front().first;
+        int parent = q.front().second;
+        q.pop();
+
+        for (int neighbor : adj[node]) {
+            if (!visited[neighbor]) {
+                visited[neighbor] = 1;
+                q.push({neighbor, node});
+            } else if (neighbor != parent) {
+                return true;  // Cycle detected
             }
-            cout<<"}"<<endl;
         }
     }
 
+    return false;
+}
+
+//=======>> This is Love Babbar Bhaiya's Code taught in class <<========
     bool checkCycleUndirectedBFS(int src){
         queue<int> q;
         unordered_map<int, bool> visited;
