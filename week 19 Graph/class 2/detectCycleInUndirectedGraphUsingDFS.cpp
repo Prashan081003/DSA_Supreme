@@ -45,3 +45,25 @@ class Solution {
         return false;
     }
 };
+
+//----------<<<  below is the question solved in gfg that is detet cycle present in undirected grapH ; 
+
+ bool dfs(int node, int parent, vector<int> adj[], vector<bool>& visited) {
+        visited[node] = true;
+
+        // Traverse all neighbors of the current node
+        for (int nbr : adj[node]) {
+            if (!visited[nbr]) {
+                // If the neighbor is not visited, recurse on it
+                if (dfs(nbr, node, adj, visited)) {
+                    return true;  // If a cycle is detected in recursion, return true
+                }
+            }
+            // If the neighbor is visited and it's not the parent, then there's a cycle
+            else if (nbr != parent) {
+                return true;  // Cycle detected
+            }
+        }
+
+        return false;  // No cycle detected
+    }
