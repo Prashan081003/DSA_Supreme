@@ -101,7 +101,7 @@ class Graph {
 		//distance updation logic 
 		while(!st.empty()) {
 			auto topElement = st.begin();
-			pair<int, int> topPair = *topElement;
+			pair<int, int> topPair = *topElement;  // or pair<int,int>topPair = *st.begin() ; 
 			int topDist = topPair.first;
 			int topNode = topPair.second;
 			//remove the topNode
