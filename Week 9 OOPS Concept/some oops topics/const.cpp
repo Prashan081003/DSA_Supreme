@@ -50,6 +50,7 @@ class abc{
 };
 
 void printABC(const abc &a){
+    //since const is declared it can call only const function not every function ; 
     cout<<a.getX()<<" "<<a.getY()<<" "<<a.getZ()<<endl;
 }
 
