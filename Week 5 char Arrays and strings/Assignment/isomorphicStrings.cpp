@@ -6,6 +6,21 @@
 
 // All occurrences of a character must be replaced with another character while preserving the order of characters. No two characters may map to the same character, but a character may map to itself.
 
+
+
+----------->>>>>>>>>> New Method <<<<<<-----
+bool isIsomorphic(string s, string t) {
+    unordered_map<char, char> mapST, mapTS;
+    for(int i = 0; i < s.length(); i++) {
+        if(mapST.count(s[i]) && mapST[s[i]] != t[i]) return false;
+        if(mapTS.count(t[i]) && mapTS[t[i]] != s[i]) return false;
+        mapST[s[i]] = t[i];
+        mapTS[t[i]] = s[i];
+    }
+    return true;
+}
+
+------------>>>>>> OLD Method <<<<<--------
 #include<iostream>
 using namespace std;
 
