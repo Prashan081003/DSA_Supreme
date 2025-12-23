@@ -30,4 +30,17 @@ public:
         }
         return slow;
     }
+//more compact code
+ListNode* middleNode(ListNode* head) {
+    ListNode *slow = head, *fast = head;
+
+    while (fast && fast->next) {
+        slow = slow->next;
+        fast = fast->next->next;
+    }
+    return slow;
+}
+//Odd length: exact middle return
+// Even length: second middle return hota hai
+// (LeetCode standard)
 };
