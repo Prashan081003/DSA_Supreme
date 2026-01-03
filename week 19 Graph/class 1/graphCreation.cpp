@@ -34,7 +34,30 @@ class Graph{
         }
     }
 };
+ #include <bits/stdc++.h>
+using namespace std;
 
+class Graph {
+public:
+    unordered_map<int, vector<int>> adj;
+
+    void addEdge(int u, int v, bool directed) {
+        adj[u].push_back(v);
+        if (!directed) {
+            adj[v].push_back(u);
+        }
+    }
+
+    void printGraph() {
+        for (auto it : adj) {
+            cout << it.first << " -> ";
+            for (int nbr : it.second) {
+                cout << nbr << " ";
+            }
+            cout << endl;
+        }
+    }
+};
 int main(){
     Graph g;
     g.addEdge(0, 1, 1);
